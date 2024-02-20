@@ -63,12 +63,15 @@ class AuthContoller extends Controller
 
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+        $user = Auth::user();
 
-        return [
-            'message' => 'You have  successfully logged out and the token was successfully deleted'
-        ];
+        // Cambiar el estado de todos los tokens de acceso del usuario a false
+        $user->tokens->each(function ($token) {
+            $token->update(['status' => false]);
+        });
+
+        return response()->json(['message' => 'Logged out successfully']);
     }
 }
