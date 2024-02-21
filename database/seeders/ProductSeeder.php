@@ -16,18 +16,18 @@ class ProductSeeder extends Seeder
         //
         DB::table('products')->insert([
             'name' => "Iphone 13",
-            'descriptio' => "Smart Phone by Apple",
+            'description' => "Smart Phone by Apple",
             'price' => 980
         ]);
 
         DB::table('products')->insert([
             'name' => "Ipad Pro 11",
-            'descriptio' => "Tablet by Apple",
+            'description' => "Tablet by Apple",
             'price' => 850
         ]);
         DB::table('products')->insert([
             'name' => "Apple Watch",
-            'descriptio' => "Watch by Apple",
+            'description' => "Watch by Apple",
             'price' => 540
         ]);
     }
