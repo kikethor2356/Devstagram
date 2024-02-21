@@ -30,9 +30,9 @@ class AuthContoller extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
-
+        
         $token = $user->createToken('auth_token')->plainTextToken;
         return response()
         ->json(['data'=> $user,'access_token' => $token, 'token_type' => 'Bearer',]);
@@ -68,10 +68,13 @@ class AuthContoller extends Controller
         $user = Auth::user();
 
         // Cambiar el estado de todos los tokens de acceso del usuario a false
-        $user->tokens->each(function ($token) {
-            $token->update(['status' => false]);
+        $user->token->updateToken(function ($token) {
+            $token->update(['experies_at' => 'inactivo']);
         });
 
         return response()->json(['message' => 'Logged out successfully']);
     }
+
+
+    
 }

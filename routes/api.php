@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthContoller;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     
     Route::get('logout',[AuthContoller::class,'logout']);
     Route::get('products',[ProductController::class,'index']);
+    Route::post('profile',[UserController::class,'profile']);
+
 });
